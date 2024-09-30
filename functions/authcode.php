@@ -1,4 +1,5 @@
 <?php 
+include('myfunctions.php');
 
     session_start();
     include('../config/dbcon.php');
@@ -53,18 +54,32 @@
             $userdata = mysqli_fetch_array($login_query_run);
             $username = $userdata['name'];
             $useremail = $userdata['email'];
+            $role_as = $userdata['role_as'];
+
 
             $_SESSION['auth_user'] = [
                 'name' => $username,
                 'email' => $useremail
             ];
 
-            $_SESSION['message'] = "Logged In Successfully";
-            header('Location: ../index.php');
+            $_SESSION['role_as'] = $role_as;
+
+            if($role_as == 1){
+
+            redirect("../admin/index.php", "Welcome to Dashboard");
+
+            }
+            else{
+
+            redirect("../index.php", "Logged In Successfully");
+
+            }
+           
         }
         else{
-            $_SESSION['message'] = "Invalid Credentials";
-            header('Location: ../login.php');
+
+            redirect("../login.php", "Invalid Credentials");
+
         }
     }
 ?>
