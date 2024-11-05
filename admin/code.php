@@ -37,5 +37,29 @@ if(isset($_POST['add_category_btn']))
 
 }
 
+else if(isset($_POST['update_category_btn'])){
+    $category_id = $_POST['category'];
+    $name = $_POST['name'];
+    $slug = $_POST['slug'];
+    $description = $_POST['description'];
+    $meta_title = $_POST['meta_title'];
+    $meta_description = $_POST['meta_description'];
+    $meta_keywords = $_POST['meta_keywords'];
+    $status = isset($_POST['status']) ? '1' : '0' ;
+    $popular = isset($_POST['popular']) ? '1' : '0' ;
+
+    $new_image = $_FILES['image']['name'];
+    $old_image = $_POST['old_image'];
+
+    if($new_image != ""){
+        $update_filename = $new_image;
+    }
+    else{
+        $update_filename = $old_image;
+    }
+
+    $update_query = "UPDATE categories SET name='$name', slug='$slug', description='$description', meta_title='$meta_title', meta_description='$meta_description', meta_keywords='$meta_keywords', status='$status', popular='$popular', image='$update_filename' WHERE id='$category'     ";
+
+}
 
 ?>

@@ -42,6 +42,9 @@ include('../middleware/adminMiddleware.php');
                                             <div class="col-md-12">
                                                 <label for="">Upload Image</label>
                                                 <input type="file" name="image" class="form-control">
+                                                <label for="">Current Image</label>
+                                                <input type="hidden" name="old_image" value="<?= $data['image'] ?>">
+                                                <img src="../uploads/<?= $data['image'] ?>" height="50px" width="50px" alt="">    
                                             </div>
                                             <div class="col-md-12">
                                                 <label for="">Meta Title</label>
@@ -64,7 +67,7 @@ include('../middleware/adminMiddleware.php');
                                                 <input type="checkbox" <?= $data['popular'] ? "checked" : "" ?> name="popular">
                                             </div>
                                             <div class="col-md-12">
-                                                <button type="submit" class="btn btn-primary" name="add_category_btn">Save</button>
+                                                <button type="submit" class="btn btn-primary" name="update_category_btn">Update</button>
                                             </div>
                                             </div>
                                         </form>
